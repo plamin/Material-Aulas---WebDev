@@ -1,5 +1,6 @@
 function executarPush() {
   const array = ['🍎', '🍌'];
+  array.push('🍇')
   const resultado = array;
   document.getElementById('resultado-push').textContent = resultado;
 }
@@ -134,3 +135,10 @@ function executarEncadeamento() {
 }
 
 
+
+
+let nome = ["Pedro", 18, "Fulano"];
+console.log(nome[2])
+nome[2] = "Yuri Alberto"
+console.log(nome[2])
+console.log(nome.length)
