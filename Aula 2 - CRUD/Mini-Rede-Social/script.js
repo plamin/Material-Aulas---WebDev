@@ -18,3 +18,66 @@ let posts = [
         date: "12/10/2023 12:00:00"
     }
 ];
+
+window.onload = function(){
+    mostrarPosts();
+    document.querySelector('#postForm').addEventListener('submit', addPost)
+}
+
+// CREATE
+function addPost(infosDoEvento){
+    infosDoEvento.preventDefault();
+
+    const textoPost = document.querySelector("#postText").value;
+    const categoriaPost = document.querySelector("#postCategory").value;
+    const imagemPost = document.querySelector("#postImage").value;
+    
+    const novoPost = {
+        text: textoPost,
+        category: categoriaPost,
+        image: imagemPost,
+        date: new Date().toLocaleString()
+    }
+
+    posts.unshift(novoPost)
+
+    mostrarPosts()
+
+}
+// READ
+function mostrarPosts(){
+    // Pegando elementos onde os tweets serão inseridos
+    const listaPosts = document.querySelector('#postList')
+    listaPosts.innerHTML = ""
+    // Passando pelo array criando um tweet para cada um
+    posts.forEach( pegaItem => {
+        const cardPost = document.createElement("div")
+        cardPost.classList.add("card")
+        cardPost.innerHTML = `
+        <h2>${pegaItem.text}</h2>
+        <img src = ${pegaItem.image}/>
+        <p>Categoria: ${pegaItem.category}</p>
+        <p>Data e hora: ${pegaItem.date}</p>
+        <button>Editar</button>
+        <button>Apagar</button>
+        `
+    // Adicionando cada card ao html
+        listaPosts.append(cardPost)
+    })
+}
+// UPDATE
+function editarPosts(){}
+// DELETE
+function deletarPosts(){}
+
+
+// Objetos
+
+// const pessoa = {
+//     nome: "Pedro",
+//     idade: 18,
+//     isAdmin: true,
+//     empresasTrabalhadas: ['Nokia', 'Santander']
+// }
+
+// console.log(pessoa.empresasTrabalhadas)
